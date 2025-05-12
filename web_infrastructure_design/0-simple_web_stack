@@ -1,0 +1,40 @@
+0. Simple Web Stack
+
+Infrastructure:
+
+User --> www.foobar.com (DNS) --> IP address 8.8.8.8
+
+On the server (IP: 8.8.8.8), we have:
+
+- 1 web server: Nginx
+- 1 application server: running the application code (e.g., Python, PHP)
+- 1 code base: the application files (HTML, JS, backend code)
+- 1 database: MySQL
+
+How it works:
+
+1. A user types www.foobar.com in their web browser.
+2. The browser performs a DNS request to resolve www.foobar.com.
+3. The DNS server returns the IP address 8.8.8.8.
+4. The browser sends an HTTP request to the server at 8.8.8.8.
+5. Nginx (the web server) receives the request.
+6. Nginx forwards the request to the application server.
+7. The application processes the request and may query the MySQL database.
+8. A response is generated and sent back to the user via Nginx.
+
+Component roles:
+
+- Server: A physical or virtual machine that hosts all services (web server, app, DB).
+- Domain name: A human-readable address pointing to the server IP.
+- DNS record type for www.foobar.com: A record (Address record) that maps www.foobar.com to 8.8.8.8.
+- Web server (Nginx): Handles HTTP requests and routes them to the application server.
+- Application server: Runs the logic of the application (backend).
+- Database (MySQL): Stores persistent data (users, posts, etc.).
+- Communication: The server and client communicate using HTTP/HTTPS.
+
+Issues with this setup:
+
+- Single Point of Failure (SPOF): If the server goes down, the entire site becomes unavailable.
+- Downtime during maintenance: Restarting Nginx or deploying new code causes the site to go offline temporarily.
+- Not scalable: One server can't handle too many requests at once. No load balancing or redundancy.
+
